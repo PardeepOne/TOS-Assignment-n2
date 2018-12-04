@@ -9,3 +9,7 @@ directories:
 script:
 - cd restaurant-manager/
 - mvn clean install
+branches:
+  only:
+  - master
+  - develop

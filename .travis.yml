@@ -9,4 +9,4 @@ directories:
 script:
 - cd restaurant-manager/
 - mvn clean install
-- mvn clean test coveralls:report
+- mvn clean test jacoco:report coveralls:report

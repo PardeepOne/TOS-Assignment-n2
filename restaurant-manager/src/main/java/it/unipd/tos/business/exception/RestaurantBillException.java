@@ -1,0 +1,9 @@
+////////////////////////////////////////////////////////////////////
+// [Pardeep] [Singh] [1143264]
+////////////////////////////////////////////////////////////////////
+package it.unipd.tos.business.exception;
+
+public class RestaurantBillException extends Exception {
+    private static final long serialVersionUID = 1L;
+
+}

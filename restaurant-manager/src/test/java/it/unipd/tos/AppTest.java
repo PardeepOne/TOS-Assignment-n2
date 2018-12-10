@@ -15,6 +15,9 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+        App app = new App();
+        String[] strings = new String[2];
+        App.main(strings);
+        assertTrue(true);
     }
 }

@@ -3,19 +3,19 @@
 ////////////////////////////////////////////////////////////////////
 package it.unipd.tos;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
+public class AppTest
 {
     /**
      * Rigourous Test :-)
      */
+	@Test
     public void AppTestMainMethod_AnswerTrue()
     {
         App app = new App();

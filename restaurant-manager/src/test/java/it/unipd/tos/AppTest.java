@@ -15,7 +15,7 @@ public class AppTest
     /**
      * Rigourous Test :-)
      */
-	@Test
+    @Test
     public void AppTestMainMethod_AnswerTrue()
     {
         App app = new App();

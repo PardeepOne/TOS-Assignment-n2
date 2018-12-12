@@ -19,7 +19,7 @@ public class MenuItem {
 
     public MenuItem(String name, ItemType type, double price) {
         setName(name);
-    	setType(type);
+        setType(type);
         setPrice(price);
     }
 

@@ -18,10 +18,9 @@ public class MenuItem {
     private ItemType itemType;
 
     public MenuItem(String name, ItemType type, double price) {
-        super();
-        this.name = name;
-        this.itemType = type;
-        this.price = price;
+        setName(name);
+    	setType(type);
+        setPrice(price);
     }
 
     public String getName() {
@@ -44,7 +43,7 @@ public class MenuItem {
         return price;
     }
 
-    public void setAmount(double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
     

@@ -1,3 +1,6 @@
+////////////////////////////////////////////////////////////////////
+// [Pardeep] [Singh] [1143264]
+////////////////////////////////////////////////////////////////////
 package it.unipd.tos;
 
 import junit.framework.Test;
@@ -13,7 +16,7 @@ public class AppTest
     /**
      * Rigourous Test :-)
      */
-    public void testApp()
+    public void AppTestMainMethod_AnswerTrue()
     {
         App app = new App();
         String[] strings = new String[2];

@@ -1,3 +1,6 @@
+////////////////////////////////////////////////////////////////////
+// [Pardeep] [Singh] [1143264]
+////////////////////////////////////////////////////////////////////
 package it.unipd.tos.business;
 
 import static org.junit.Assert.assertEquals;
@@ -126,10 +129,10 @@ public class RestaurantBillImplTest {
      }
      
      @Test
-     public void GetSetAmountOfMenuItem_OneMenuItem_Compare(){
+     public void GetSetPriceOfMenuItem_OneMenuItem_Compare(){
     	 MenuItem menuItem = new MenuItem("Pasta",MenuItem.ItemType.Primi,35);
     	 
-    	 menuItem.setAmount(99);
+    	 menuItem.setPrice(99);
     	 double a = menuItem.getPrice();
     	 
     	 assertEquals(a, menuItem.getPrice(),0.0f);

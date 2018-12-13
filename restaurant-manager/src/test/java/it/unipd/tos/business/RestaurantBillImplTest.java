@@ -16,8 +16,11 @@ import it.unipd.tos.model.MenuItem;
 public class RestaurantBillImplTest {
 
     @Test(expected = RestaurantBillException.class)
-    public void GetOrderPrice_MoreThan20Elements_ExceptionThrown() throws RestaurantBillException{
+    public void GetOrderPrice_MoreThan20MenuItems_RestaurantBillExceptionThrown() throws RestaurantBillException{
         List<MenuItem> items = new ArrayList<MenuItem>();
+        for(int i =0; i < 5; ++i) {
+            items.add(new MenuItem("Pizza", MenuItem.ItemType.Pizze, Math.random()));
+        }
         for(int i =0; i < 25; ++i) {
             items.add(new MenuItem("Pasta", MenuItem.ItemType.Primi, Math.random()));
         }
@@ -27,7 +30,33 @@ public class RestaurantBillImplTest {
     }
     
     @Test
-    public void GetOrderPrice_LessThan10PizzasAndTotalMoreThan100_Calculate() throws RestaurantBillException{
+    public void GetOrderPrice_OnlyPrimiWithTotalMoreThan100_Calculate() throws RestaurantBillException {
+    	List<MenuItem> itemsOrdered = new ArrayList<>();
+        for(int i = 1 ; i < 5;i++) {
+            itemsOrdered.add(new MenuItem("Primi", MenuItem.ItemType.Primi, 50));
+        }
+        
+        
+        RestaurantBillImpl r = new RestaurantBillImpl();
+        double expPrice = 200*0.95;
+        assertEquals(expPrice, r.getOrderPrice(itemsOrdered),0.0);
+    }
+    
+    @Test
+    public void GetOrderPrice_OnlyPrimiWithTotalLessThan100_Calculate() throws RestaurantBillException {
+    	List<MenuItem> itemsOrdered = new ArrayList<>();
+        for(int i = 1 ; i < 20;i++) {
+            itemsOrdered.add(new MenuItem("Primi", MenuItem.ItemType.Primi, 1));
+        }
+        
+        
+        RestaurantBillImpl r = new RestaurantBillImpl();
+        double expPrice = 19;
+        assertEquals(expPrice, r.getOrderPrice(itemsOrdered),0.0);
+    }
+    
+    @Test
+    public void GetOrderPrice_OnlyLessThan10PizzeAndTotalMoreThan100_Calculate() throws RestaurantBillException{
         List<MenuItem> itemsOrdered = new ArrayList<>();
         for(int i = 1 ; i < 5;i++) {
             itemsOrdered.add(new MenuItem("Patatosa", MenuItem.ItemType.Pizze, 100));
@@ -35,22 +64,24 @@ public class RestaurantBillImplTest {
         
         
         RestaurantBillImpl r = new RestaurantBillImpl();
-        assertEquals(380, r.getOrderPrice(itemsOrdered),0.0);
+        double expPrice = 380;
+        assertEquals(expPrice, r.getOrderPrice(itemsOrdered),0.0);
      }
     
     @Test
-    public void GetOrderPrice_LessThan10PizzasAndTotalLessThan100_Calculate() throws RestaurantBillException{
+    public void GetOrderPrice_OnlyLessThan10PizzeAndTotalLessThan100_Calculate() throws RestaurantBillException{
         List<MenuItem> itemsOrdered = new ArrayList<>();
-        for(int i = 1 ; i < 5;i++) {
-            itemsOrdered.add(new MenuItem("Ciao",MenuItem.ItemType.Primi, 1));
+        for(int i = 1 ; i < 9;i++) {
+            itemsOrdered.add(new MenuItem("Ciao",MenuItem.ItemType.Pizze, 1));
         }
         
         RestaurantBillImpl r = new RestaurantBillImpl();
-        assertEquals(4, r.getOrderPrice(itemsOrdered),0.0);
+        double expPrice = 8;
+        assertEquals(expPrice, r.getOrderPrice(itemsOrdered),0.0);
      }
     
     @Test
-    public void GetOrderPrice_MoreThan10PizzasAndTotalLessThan100_Calculate() throws RestaurantBillException{
+    public void GetOrderPrice_OnlyMoreThan10PizzeAndTotalLessThan100_Calculate() throws RestaurantBillException{
         List<MenuItem> itemsOrdered = new ArrayList<>();
         for(int i = 1 ; i < 15;i++) {
             itemsOrdered.add(new MenuItem("Diavola",MenuItem.ItemType.Pizze, 5));
@@ -61,7 +92,7 @@ public class RestaurantBillImplTest {
      }
     
     @Test
-    public void GetOrderPrice_MoreThan10PizzasAndTotalMoreThan100_Calculate() throws RestaurantBillException{
+    public void GetOrderPrice_MoreThan10PizzeAndTotalMoreThan100_Calculate() throws RestaurantBillException{
         List<MenuItem> itemsOrdered = new ArrayList<>();
         for(int i = 0 ; i < 12;i++) {
             itemsOrdered.add(new MenuItem("Margherita",MenuItem.ItemType.Pizze, 10));
@@ -75,7 +106,7 @@ public class RestaurantBillImplTest {
      }
     
      @Test
-     public void GetOrderPrice_MoreThan10PizzasWithDifferentPriceAndTotalMoreThan100_Calculate() throws RestaurantBillException{
+     public void GetOrderPrice_MoreThan10PizzeWithDifferentPriceAndTotalMoreThan100_Calculate() throws RestaurantBillException{
     	 List<MenuItem> itemsOrdered = new ArrayList<>();
     	 for(int i = 0 ; i < 12;i++) {
              itemsOrdered.add(new MenuItem("Margherita",MenuItem.ItemType.Pizze, 10));
@@ -92,7 +123,7 @@ public class RestaurantBillImplTest {
      
 
      @Test
-     public void GetOrderPrice_MoreThan10PizzasWithDifferentPriceAndTotalLessThan100_Calculate() throws RestaurantBillException{
+     public void GetOrderPrice_MoreThan10PizzeWithDifferentPriceAndTotalLessThan100_Calculate() throws RestaurantBillException{
     	 List<MenuItem> itemsOrdered = new ArrayList<>();
     	 for(int i = 0 ; i < 12;i++) {
              itemsOrdered.add(new MenuItem("Margherita",MenuItem.ItemType.Pizze, 5));
